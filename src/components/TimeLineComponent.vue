@@ -15,34 +15,15 @@
           <div class="container mx-auto w-full h-full">
             <div class="relative wrap overflow-hidden p-10 h-full">
               <div class="absolute h-full border"
-                   style="right: 50%; border: 4px solid #FFC100; border-radius: 5px; background: #FFC100"></div>
-              <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                <time-line-item-component
-                  :date="dates[0].name"
-                  :time-line-item-title="timeLineItemTitles[0].name"
-                  :time-line-item-description="timeLineItemDescriptions[0].value"
-                />
+                   style="right: 50%; border: 4px solid #FFC100; border-radius: 5px; background: #FFC100">
               </div>
-              <div class="mb-8 flex justify-between items-center w-full right-timeline">
-                <time-line-item-component
-                    :date="dates[0].name"
-                    :time-line-item-title="timeLineItemTitles[0].name"
-                    :time-line-item-description="timeLineItemDescriptions[0].value"
-                />
-              </div>
-              <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                <time-line-item-component
-                    :date="dates[0].name"
-                    :time-line-item-title="timeLineItemTitles[0].name"
-                    :time-line-item-description="timeLineItemDescriptions[0].value"
-                />
-              </div>
-              <div class="mb-8 flex justify-between items-center w-full right-timeline">
-                <time-line-item-component
-                    :date="dates[0].name"
-                    :time-line-item-title="timeLineItemTitles[0].name"
-                    :time-line-item-description="timeLineItemDescriptions[0].value"
-                />
+              <div v-for="item in timeLineItems" :key="item.date" :class="item.position ? 'mb-8 flex justify-between items-center w-full right-timeline':'mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline align-content-start'">
+                  <time-line-item-component
+                      :date="item.date"
+                      :time-line-item-title="item.title"
+                      :time-line-item-description="item.description"
+                      :side-class="item.position"
+                  />
               </div>
             </div>
             <img class="mx-auto -mt-36 md:-mt-36" src="https://user-images.githubusercontent.com/54521023/116968861-ef21a000-acd2-11eb-95ac-a34b5b490265.png" />
@@ -62,38 +43,46 @@ export default {
   name: "TimeLineComponent",
   components: {TimeLineItemComponent, SideTitleComponent},
   setup(){
-    const mainTitle = ref("Working Process")
-    const mainLongTitle = ref("Working Process of Fest")
-    const description = ref("Here’s your guide to the tech fest 2021 process. Go through all the steps to know the exact process of the\n" +
-        "    fest.")
-    const btnLabel = ref("Explore Now")
-    const dates = [
+    const mainTitle = ref("My Working Process")
+    const mainLongTitle = ref("Hi there! This is me. Botond Füzi")
+    const description = ref("Here’s your guide to see my learning process. Go through all the steps to know the where I came from\n")
+    const btnLabel = ref("Download CV in english")
+    const timeLineItems = [
       {
-        name: "1-6 May, 2021"
+        date: "2007 - 2015",
+        title: "Elementary School",
+        institution: {
+          name:"Nagy Mózes Elméleti Líceum",
+          location: "Romania, Covasna county, Kézdivásárhely"
+        },
+        description: "Intensive english class",
+        position: false
+      },
+      {
+        date: "2015 - 2019",
+        title: "High School",
+        institution: {
+          name:"Nagy Mózes Elméleti Líceum",
+          location: "Romania, Covasna county, Kézdivásárhely"
+        },
+        description: "Natural science with intensive english",
+        position: true
       }
     ]
-    const timeLineItemTitles = [
-      {
-        name: "Registration"
-      }
-    ]
-    const timeLineItemDescriptions = [
-      {
-        value: "There was a lot of description, which I deleted, so now I have to write something, because it is it can not be empty."
-      }
-    ]
+
     return{
       mainTitle,
       mainLongTitle,
       description,
       btnLabel,
-      dates,
-      timeLineItemTitles,
-      timeLineItemDescriptions
+      timeLineItems
     }
   }
 }
 </script>
 
 <style scoped>
+section{
+  font-family: Raleway,sans-serif;
+}
 </style>

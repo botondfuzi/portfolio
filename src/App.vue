@@ -10,9 +10,13 @@ export default {
   components: {
     MainPage,
   },
-
-  data: () => ({
-    //
-  }),
 }
 </script>
+<style>
+@font-face {
+  font-family: 'Raleway', sans-serif;
+}
+.canva-yellow{
+  color: #ffdb6b;
+}
+</style>
